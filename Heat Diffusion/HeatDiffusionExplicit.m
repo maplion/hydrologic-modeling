@@ -46,6 +46,10 @@ temporalResolution = timeContainer(2) - timeContainer(1); % [s]
     % (dt)
 alpha = (thermalDiffusivity * temporalResolution) / spatialResolution^2;
 
+if(alpha > 0.35) % error catch for alpha
+    error(['alpha = ', num2str(alpha), '. Consider a smaller Delta t.']);
+end
+
 %% Define second difference and identity matrices
 I = eye(numberOfNodes); % numberOfNodes * numberOfNodes identity matrices
 Delta2 = diag(ones(numberOfNodes - 1, 1), 1) + ...
