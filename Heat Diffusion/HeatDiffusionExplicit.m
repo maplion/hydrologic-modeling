@@ -68,7 +68,7 @@ for i=1:numberOfTimeSteps
     end
     
     temperatureMatrix(:, i) = temperatureVectorTp1; % Note: Colon means "all rows"
-    if(mod(i, 20) == 0)
+    if(mod(i, 200) == 0)
         figure(1);
         plot(spatialContainer, temperatureVectorTp1); hold on;
         xlabel('Distance [mm]');
