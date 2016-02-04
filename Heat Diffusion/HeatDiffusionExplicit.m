@@ -61,7 +61,11 @@ for i=1:numberOfTimeSteps
         temperatureVectorTp1(end) = temperatureRightSide;
     else
         temperatureVectorT = temperatureMatrix(:, i - 1);
-                
+        
+        % Ensure that boundary conditions are preserved each go around.
+        Delta2(1, :) = [1, zeros(1, numberOfNodes - 1)];
+        Delta2(end, :) = [zeros(1, numberOfNodes - 1), 1];
+        
         temperatureVectorTp1 = temperatureVectorT + alpha * Delta2 * temperatureVectorT; % Forecast temperature distribution at t+1
         temperatureVectorTp1(1) = temperatureLeftSide;
         temperatureVectorTp1(end) = temperatureRightSide;        
